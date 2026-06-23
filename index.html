@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bar La Esquina – Cócteles de autor y ambiente íntimo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #3b4cca;   /* indigo */
+      --color-accent: #ffb84d;    /* cobre cálido (solo como valor, no token) */
+      --color-bg: #1e1e2f;
+      --color-text: #f5f5f5;
+      --font-display: 'Bebas Neue', cursive;
+      --font-body: 'Montserrat', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin:0;
+      font-family: var(--font-body);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+    }
+    a { color: var(--color-accent); text-decoration: none; }
+    a:focus-visible { outline: 2px dashed var(--color-accent); outline-offset: 2px; }
+
+    header {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:1rem 2rem;
+      position:fixed;
+      width:100%;
+      background: rgba(30,30,47,.9);
+      z-index:10;
+    }
+    .logo { font-family: var(--font-display); font-size:1.8rem; color: var(--color-accent); }
+    nav ul { list-style:none; display:flex; gap:1.5rem; margin:0; padding:0; }
+    nav a { font-weight:600; }
+    .menu-toggle { display:none; background:none; border:none; color:var(--color-accent); font-size:1.5rem; cursor:pointer; }
+    .menu-toggle:focus-visible { outline:2px dashed var(--color-accent); }
+
+    /* Hero */
+    .hero {
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+      justify-content:center;
+      align-items:center;
+      text-align:center;
+      padding:0 1rem;
+      background: linear-gradient(135deg, #2a2a3b, #1e1e2f);
+      position:relative;
+      overflow:hidden;
+    }
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size:3rem;
+      margin:0.5rem 0;
+      color: var(--color-accent);
+    }
+    .hero p {
+      max-width:600px;
+      margin:1rem auto;
+      font-size:1.1rem;
+    }
+    .hero .cta {
+      margin-top:2rem;
+      padding:0.75rem 1.5rem;
+      background: var(--color-primary);
+      color:#fff;
+      border:none;
+      border-radius:4px;
+      font-weight:600;
+      cursor:pointer;
+      transition:background .3s;
+    }
+    .hero .cta:hover,
+    .hero .cta:focus-visible {
+      background: var(--color-accent);
+      outline:none;
+    }
+
+    /* Cocktail glass SVG (neon) */
+    .hero .glass {
+      width:200px;
+      height:auto;
+      margin-top:2rem;
+      filter: drop-shadow(0 0 10px var(--color-accent));
+    }
+
+    /* Sections */
+    section { padding:4rem 2rem; }
+    .menu-grid {
+      display:grid;
+      gap:2rem;
+      grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+    }
+    .menu-item {
+      background: rgba(255,255,255,.05);
+      padding:1.5rem;
+      border-radius:8px;
+      transition:transform .3s;
+    }
+    .menu-item:hover,
+    .menu-item:focus-within {
+      transform:scale(1.02);
+    }
+    .menu-item h3 {
+      margin-top:0;
+      color: var(--color-accent);
+    }
+
+    footer {
+      background: var(--color-bg);
+      text-align:center;
+      padding:2rem;
+      font-size:0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width:768px) {
+      nav ul { flex-direction:column; background: var(--color-bg); position:absolute; top:100%; right:0; width:200px; display:none; }
+      nav ul.show { display:flex; }
+      .menu-toggle { display:block; }
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { transition:none !important; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">La Esquina</div>
+    <button class="menu-toggle" aria-label="Abrir menú" aria-controls="nav" aria-expanded="false">☰</button>
+    <nav id="nav">
+      <ul>
+        <li><a href="#sobre">Sobre nosotros</a></li>
+        <li><a href="#menu">Carta</a></li>
+        <li><a href="#contacto">Reserva</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero" id="hero">
+    <h1>Cocteles de autor</h1>
+    <p>En Bar La Esquina reinventamos la tradición con mezclas artesanales, ingredientes locales y una atmósfera íntima que invita a compartir momentos.</p>
+    <button class="cta" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'});">Reserva ahora</button>
+
+    <!-- SVG de vaso de cóctel con efecto neón -->
+    <svg class="glass" viewBox="0 0 64 64" aria-hidden="true">
+      <path d="M20 2h24l4 12-6 30h-20l-6-30z" fill="none" stroke="var(--color-accent)" stroke-width="2"/>
+      <circle cx="32" cy="20" r="8" fill="none" stroke="var(--color-accent)" stroke-width="2"/>
+    </svg>
+  </section>
+
+  <section id="sobre">
+    <h2 style="font-family:var(--font-display);font-size:2.5rem;color:var(--color-accent);text-align:center;">Sobre nosotros</h2>
+    <p style="max-width:800px;margin:auto;text-align:center;">
+      Fundado en 2018, Bar La Esquina se ha convertido en el punto de encuentro de los amantes del buen beber. Cada cóctel nace de una investigación de sabores, con destilados premium y frutas de temporada. Nuestro espacio combina madera oscura, luces cálidas y una barra de cobre que recuerda a los clásicos speakeasy, pero con la frescura de la escena contemporánea.
+    </p>
+  </section>
+
+  <section id="menu">
+    <h2 style="font-family:var(--font-display);font-size:2.5rem;color:var(--color-accent);text-align:center;">Carta de cócteles</h2>
+    <div class="menu-grid">
+      <article class="menu-item" tabindex="0">
+        <h3>Esquina Sunrise</h3>
+        <p>Ginebra artesanal, jugo de pomelo, sirope de hibisco y un toque de bitter de naranja.</p>
+      </article>
+      <article class="menu-item" tabindex="0">
+        <h3>Río de Noche</h3>
+        <p>Ron añejo, cacao amargo, licor de café y espuma de leche de avena.</p>
+      </article>
+      <article class="menu-item" tabindex="0">
+        <h3>Bruma del Bosque</h3>
+        <p>Mezcal, licor de enebro, puré de pera y vapor de romero.</p>
+      </article>
+      <article class="menu-item" tabindex="0">
+        <h3>Fusión Tropical</h3>
+        <p>Vodka, maracuyá, albahaca fresca y espuma de coco.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <h2 style="font-family:var(--font-display);font-size:2.5rem;color:var(--color-accent);text-align:center;">Reserva tu mesa</h2>
+    <p style="text-align:center;">Llámanos al <a href="tel:+34123456789">+34 123 456 789</a> o envíanos un mensaje por WhatsApp. ¡Te esperamos!</p>
+  </section>
+
+  <footer>
+    © 2024 Bar La Esquina – Todos los derechos reservados.
+  </footer>
+
+  <script>
+    // Menú móvil
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.getElementById('nav');
+    toggle.addEventListener('click', () => {
+      const expanded = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', !expanded);
+      nav.querySelector('ul').classList.toggle('show');
+    });
+  </script>
+</body>
+</html>

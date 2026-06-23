@@ -3,208 +3,200 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Bar La Esquina – Cócteles de autor y ambiente íntimo</title>
+  <title>Bar La Esquina – Sabor y buena compañía</title>
+
+  <!-- Google Fonts: Display + Text -->
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --color-primary: #3b4cca;   /* indigo */
-      --color-accent: #ffb84d;    /* cobre cálido (solo como valor, no token) */
-      --color-bg: #1e1e2f;
-      --color-text: #f5f5f5;
-      --font-display: 'Bebas Neue', cursive;
-      --font-body: 'Montserrat', sans-serif;
+      --bg: #0d0d1a;               /* fondo oscuro azul‑gris */
+      --accent: #ffb84d;           /* dorado cálido, recuerda la luz del neón */
+      --text: #f0f0f5;
+      --heading: "Bebas Neue", cursive;
+      --body: "Montserrat", sans-serif;
     }
 
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * { box-sizing: border-box; margin:0; padding:0; }
     body {
-      margin:0;
-      font-family: var(--font-body);
-      background: var(--color-bg);
-      color: var(--color-text);
+      font-family: var(--body);
+      background: var(--bg);
+      color: var(--text);
       line-height: 1.6;
     }
-    a { color: var(--color-accent); text-decoration: none; }
-    a:focus-visible { outline: 2px dashed var(--color-accent); outline-offset: 2px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
 
     header {
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:1rem 2rem;
-      position:fixed;
-      width:100%;
-      background: rgba(30,30,47,.9);
-      z-index:10;
+      position: relative;
+      height: 70vh;
+      background: url('https://images.unsplash.com/photo-1551022379-1c6c0c9c2c4b?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
     }
-    .logo { font-family: var(--font-display); font-size:1.8rem; color: var(--color-accent); }
-    nav ul { list-style:none; display:flex; gap:1.5rem; margin:0; padding:0; }
-    nav a { font-weight:600; }
-    .menu-toggle { display:none; background:none; border:none; color:var(--color-accent); font-size:1.5rem; cursor:pointer; }
-    .menu-toggle:focus-visible { outline:2px dashed var(--color-accent); }
-
-    /* Hero */
+    header::before {
+      content:"";
+      position:absolute;
+      inset:0;
+      background: rgba(13,13,26,0.7);
+    }
     .hero {
-      min-height:100vh;
+      position: absolute;
+      inset:0;
       display:flex;
       flex-direction:column;
       justify-content:center;
       align-items:center;
       text-align:center;
       padding:0 1rem;
-      background: linear-gradient(135deg, #2a2a3b, #1e1e2f);
-      position:relative;
-      overflow:hidden;
+      color: var(--text);
     }
     .hero h1 {
-      font-family: var(--font-display);
-      font-size:3rem;
-      margin:0.5rem 0;
-      color: var(--color-accent);
+      font-family: var(--heading);
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      color: var(--accent);
+      text-shadow: 0 0 10px rgba(255,184,77,.6);
     }
     .hero p {
-      max-width:600px;
-      margin:1rem auto;
-      font-size:1.1rem;
+      margin-top: .5rem;
+      font-size: clamp(1rem, 4vw, 1.25rem);
+      max-width: 30rem;
     }
-    .hero .cta {
-      margin-top:2rem;
-      padding:0.75rem 1.5rem;
-      background: var(--color-primary);
-      color:#fff;
-      border:none;
-      border-radius:4px;
+
+    nav {
+      background: rgba(0,0,0,.6);
+      padding: .5rem 1rem;
+      position: sticky;
+      top:0;
+      z-index:10;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+    }
+    nav ul {
+      list-style:none;
+      display:flex;
+      gap:1.5rem;
+    }
+    nav a {
       font-weight:600;
-      cursor:pointer;
-      transition:background .3s;
+      color: var(--text);
     }
-    .hero .cta:hover,
-    .hero .cta:focus-visible {
-      background: var(--color-accent);
-      outline:none;
-    }
+    nav a:hover,
+    nav a:focus-visible { color: var(--accent); }
 
-    /* Cocktail glass SVG (neon) */
-    .hero .glass {
-      width:200px;
-      height:auto;
-      margin-top:2rem;
-      filter: drop-shadow(0 0 10px var(--color-accent));
+    main { padding:2rem 1rem; max-width: 960px; margin:auto; }
+    section { margin-bottom:3rem; }
+    h2 {
+      font-family: var(--heading);
+      font-size: 2rem;
+      color: var(--accent);
+      margin-bottom:.5rem;
     }
-
-    /* Sections */
-    section { padding:4rem 2rem; }
     .menu-grid {
       display:grid;
-      gap:2rem;
-      grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+      gap:1.5rem;
+      grid-template-columns:repeat(auto-fit, minmax(200px,1fr));
     }
     .menu-item {
       background: rgba(255,255,255,.05);
-      padding:1.5rem;
       border-radius:8px;
-      transition:transform .3s;
+      padding:1rem;
+      text-align:center;
+      transition: transform .3s ease;
     }
     .menu-item:hover,
-    .menu-item:focus-within {
-      transform:scale(1.02);
+    .menu-item:focus-visible {
+      transform:scale(1.03);
+      background: rgba(255,255,255,.1);
     }
     .menu-item h3 {
-      margin-top:0;
-      color: var(--color-accent);
+      margin-top:.5rem;
+      font-size:1.2rem;
+      color: var(--accent);
     }
 
     footer {
-      background: var(--color-bg);
+      background: #020203;
+      color: #aaa;
       text-align:center;
-      padding:2rem;
-      font-size:0.9rem;
-    }
-
-    /* Responsive */
-    @media (max-width:768px) {
-      nav ul { flex-direction:column; background: var(--color-bg); position:absolute; top:100%; right:0; width:200px; display:none; }
-      nav ul.show { display:flex; }
-      .menu-toggle { display:block; }
+      padding:1.5rem 1rem;
+      font-size:.9rem;
     }
 
     /* Reduced motion */
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { transition:none !important; }
     }
+
+    /* Mobile tweaks */
+    @media (max-width:600px) {
+      nav ul { flex-direction:column; gap:.5rem; }
+      .hero h1 { font-size:2.5rem; }
+    }
   </style>
 </head>
 <body>
+
+  <nav aria-label="Navegación principal">
+    <div><strong>Bar La Esquina</strong></div>
+    <ul>
+      <li><a href="#sobre">Sobre nosotros</a></li>
+      <li><a href="#menu">Carta</a></li>
+      <li><a href="#contacto">Reserva</a></li>
+    </ul>
+  </nav>
+
   <header>
-    <div class="logo">La Esquina</div>
-    <button class="menu-toggle" aria-label="Abrir menú" aria-controls="nav" aria-expanded="false">☰</button>
-    <nav id="nav">
-      <ul>
-        <li><a href="#sobre">Sobre nosotros</a></li>
-        <li><a href="#menu">Carta</a></li>
-        <li><a href="#contacto">Reserva</a></li>
-      </ul>
-    </nav>
+    <div class="hero">
+      <h1>Bar La Esquina</h1>
+      <p>Donde la noche cobra sabor. Cócteles artesanales, tapas caseras y la mejor música en vivo.</p>
+    </div>
   </header>
 
-  <section class="hero" id="hero">
-    <h1>Cocteles de autor</h1>
-    <p>En Bar La Esquina reinventamos la tradición con mezclas artesanales, ingredientes locales y una atmósfera íntima que invita a compartir momentos.</p>
-    <button class="cta" onclick="document.getElementById('contacto').scrollIntoView({behavior:'smooth'});">Reserva ahora</button>
+  <main>
+    <section id="sobre">
+      <h2>Sobre nosotros</h2>
+      <p>Fundado en 2015, Bar La Esquina se ha convertido en el punto de encuentro de la ciudad. Cada rincón está pensado para que te sientas como en casa, mientras disfrutas de una atmósfera íntima y una atención personalizada.</p>
+    </section>
 
-    <!-- SVG de vaso de cóctel con efecto neón -->
-    <svg class="glass" viewBox="0 0 64 64" aria-hidden="true">
-      <path d="M20 2h24l4 12-6 30h-20l-6-30z" fill="none" stroke="var(--color-accent)" stroke-width="2"/>
-      <circle cx="32" cy="20" r="8" fill="none" stroke="var(--color-accent)" stroke-width="2"/>
-    </svg>
-  </section>
+    <section id="menu">
+      <h2>Nuestra carta</h2>
+      <div class="menu-grid">
+        <div class="menu-item" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1586190848861-99aa4a171e90?auto=format&fit=crop&w=200&q=80" alt="Mojito clásico" width="100%" loading="lazy">
+          <h3>Mojito Clásico</h3>
+          <p>Ron, hierbabuena, lima y un toque de azúcar moreno.</p>
+        </div>
+        <div class="menu-item" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1551022379-1c6c0c9c2c4b?auto=format&fit=crop&w=200&q=80" alt="Tapas de jamón ibérico" width="100%" loading="lazy">
+          <h3>Jamón Ibérico</h3>
+          <p>Lonchas finas de jamón curado, servidas con pan artesanal.</p>
+        </div>
+        <div class="menu-item" tabindex="0">
+          <img src="https://images.unsplash.com/photo-1556912995-6e5c5f5c5c5c?auto=format&fit=crop&w=200&q=80" alt="Tarta de queso" width="100%" loading="lazy">
+          <h3>Tarta de Queso</h3>
+          <p>Suave y cremosa, con base de galleta y coulis de frutos rojos.</p>
+        </div>
+      </div>
+    </section>
 
-  <section id="sobre">
-    <h2 style="font-family:var(--font-display);font-size:2.5rem;color:var(--color-accent);text-align:center;">Sobre nosotros</h2>
-    <p style="max-width:800px;margin:auto;text-align:center;">
-      Fundado en 2018, Bar La Esquina se ha convertido en el punto de encuentro de los amantes del buen beber. Cada cóctel nace de una investigación de sabores, con destilados premium y frutas de temporada. Nuestro espacio combina madera oscura, luces cálidas y una barra de cobre que recuerda a los clásicos speakeasy, pero con la frescura de la escena contemporánea.
-    </p>
-  </section>
-
-  <section id="menu">
-    <h2 style="font-family:var(--font-display);font-size:2.5rem;color:var(--color-accent);text-align:center;">Carta de cócteles</h2>
-    <div class="menu-grid">
-      <article class="menu-item" tabindex="0">
-        <h3>Esquina Sunrise</h3>
-        <p>Ginebra artesanal, jugo de pomelo, sirope de hibisco y un toque de bitter de naranja.</p>
-      </article>
-      <article class="menu-item" tabindex="0">
-        <h3>Río de Noche</h3>
-        <p>Ron añejo, cacao amargo, licor de café y espuma de leche de avena.</p>
-      </article>
-      <article class="menu-item" tabindex="0">
-        <h3>Bruma del Bosque</h3>
-        <p>Mezcal, licor de enebro, puré de pera y vapor de romero.</p>
-      </article>
-      <article class="menu-item" tabindex="0">
-        <h3>Fusión Tropical</h3>
-        <p>Vodka, maracuyá, albahaca fresca y espuma de coco.</p>
-      </article>
-    </div>
-  </section>
-
-  <section id="contacto">
-    <h2 style="font-family:var(--font-display);font-size:2.5rem;color:var(--color-accent);text-align:center;">Reserva tu mesa</h2>
-    <p style="text-align:center;">Llámanos al <a href="tel:+34123456789">+34 123 456 789</a> o envíanos un mensaje por WhatsApp. ¡Te esperamos!</p>
-  </section>
+    <section id="contacto">
+      <h2>Reserva tu mesa</h2>
+      <p>¿Quieres asegurar tu lugar? Llámanos al <a href="tel:+34123456789">+34 123 456 789</a> o envíanos un mensaje por WhatsApp.</p>
+    </section>
+  </main>
 
   <footer>
-    © 2024 Bar La Esquina – Todos los derechos reservados.
+    © 2026 Bar La Esquina – Todos los derechos reservados.
   </footer>
 
   <script>
-    // Menú móvil
-    const toggle = document.querySelector('.menu-toggle');
-    const nav = document.getElementById('nav');
-    toggle.addEventListener('click', () => {
-      const expanded = toggle.getAttribute('aria-expanded') === 'true';
-      toggle.setAttribute('aria-expanded', !expanded);
-      nav.querySelector('ul').classList.toggle('show');
+    // Scroll suave para los enlaces del menú
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        target.scrollIntoView({ behavior: 'smooth' });
+      });
     });
   </script>
 </body>
